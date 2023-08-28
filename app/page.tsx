@@ -3,6 +3,7 @@ import { queryBuilder } from '../lib/planetscale';
 import Search from './search';
 import UsersTable from './table';
 import Story from './components/Story';
+import Words from './components/Words';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,11 +19,8 @@ export default async function IndexPage({
     .where('name', 'like', `%${search}%`)
     .execute();
 
-  const onWordClick = () => ({});
   const data = await fetch("http://localhost:3002/api/getStory");
   const storyText = (await data.json()).storyText
-
-  console.log('>>', storyText)
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
@@ -32,8 +30,10 @@ export default async function IndexPage({
       </Text>
       <Search />
       <Card className="mt-6">
-        <Story storyText={storyText} onWordClick={onWordClick} />
-        <UsersTable users={users} />
+        <Story storyText={storyText} />
+      </Card>
+      <Card className="mt-6">
+        <Words />
       </Card>
     </main>
   );

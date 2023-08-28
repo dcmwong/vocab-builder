@@ -3,6 +3,7 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Nav from './nav';
 import { Suspense } from 'react';
+import { ReduxProvider } from './store/provider';
 
 export const metadata = {
   title: 'Vocab builder',
@@ -21,7 +22,9 @@ export default async function RootLayout({
         <Suspense>
           <Nav />
         </Suspense>
-        {children}
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
         <Analytics />
       </body>
     </html>
