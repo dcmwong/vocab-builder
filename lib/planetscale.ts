@@ -9,8 +9,11 @@ interface User {
   email: string;
 }
 
+
+
 interface Database {
   users: User;
+  words: string[]
   // https://github.com/nextauthjs/next-auth/issues/4922
 }
 
